@@ -11,7 +11,7 @@ const copy = (target) => {
 
     if (!window.navigator.clipboard) {
         // clipboard not available
-        throw new Error('Clipboard not available')
+        return Promise.resolve()
     }
 
     return window.navigator.clipboard.writeText(target).then(onCopy)
