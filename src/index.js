@@ -9,8 +9,11 @@ const copy = (target) => {
         target = JSON.stringify(target)
     }
 
-    return window.navigator.clipboard.writeText(target)
-        .then(onCopy)
+    if (!window.navigator.clipboard) {
+        return Promise.reject(new Error('clipboard not available'))
+    }
+
+    return window.navigator.clipboard.writeText(target).then(onCopy)
 }
 
 function Clipboard(Alpine) {
