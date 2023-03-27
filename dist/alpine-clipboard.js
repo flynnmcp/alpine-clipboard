@@ -14,6 +14,10 @@
         target = JSON.stringify(target);
       }
 
+      if (!window.navigator.clipboard) {
+        return Promise.reject(new Error('clipboard not available'));
+      }
+
       return window.navigator.clipboard.writeText(target).then(onCopy);
     };
 
